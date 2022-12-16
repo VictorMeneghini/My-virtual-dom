@@ -1,3 +1,9 @@
+/*    
+  The main.js will be the entry point of my application.
+  It needs be imported inside of an HTML file to get access to
+  the DOM api.
+*/
+
 import createElement from "./vdom/createElement"
 import render from "./vdom/render"
 import mount from "./vdom/mount"
