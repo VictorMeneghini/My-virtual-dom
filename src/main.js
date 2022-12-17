@@ -8,11 +8,13 @@ import createElement from "./vdom/createElement"
 import render from "./vdom/render"
 import mount from "./vdom/mount"
 
-const vApp = createElement("div", {
+const createVApp = count => createElement("div", {
   attrs: {
     id: "app"
   },
   children: [
+    "hello world",
+    String(count),
     createElement("img", {
       attrs: {
         src: "https://onlygoodanimes.files.wordpress.com/2012/12/uchuu-kyoudai-1.jpg"
@@ -21,7 +23,15 @@ const vApp = createElement("div", {
   ]
 })
 
+let count = 0;
+const vApp = createVApp(count)
 const $app = render(vApp)
-mount($app, document.getElementById("app"))
+
+let $rootEl = mount($app, document.getElementById("app"))
+
+setInterval(() => {
+  count++
+  $rootEl = mount(render(createVApp(count)), $rootEl);
+}, 1000);
 
 console.log($app)

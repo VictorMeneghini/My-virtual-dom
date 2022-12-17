@@ -3,19 +3,19 @@
   that we can call it as Node or vNode (virtual node)
 */
 
-const render = (vNode) => {
+const renderElementNode = ({tagName, attrs, children}) => {
 
   /*
     Create an $el element with the tagName of
     our vNode
   */
-  const $el = document.createElement(vNode.tagName);
+  const $el = document.createElement(tagName);
 
   /*
     Now we need to get all of attr of our vNode and
     set them to our new $el created before.
   */
-  for (const [key, value] of  Object.entries(vNode.attrs)) {
+  for (const [key, value] of  Object.entries(attrs)) {
   
     /*
       Basically we are adding the values like
@@ -30,12 +30,20 @@ const render = (vNode) => {
 
    In the end we need append all of them
   */
-  for (const child of vNode.children) {
+  for (const child of children) {
     const $child = render(child)
     $el.appendChild($child)
   }
 
   return $el
+}
+
+const render = (vNode) => {
+  if (typeof vNode === "string") {
+    return document.createTextNode(vNode)
+  }
+
+  return renderElementNode(vNode)
 }
 
 export default render
