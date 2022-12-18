@@ -26,7 +26,7 @@ const renderElementNode = ({tagName, attrs, children}) => {
 
   /*
    Now we need to go through all children's
-   and make an render for each of them.
+   and make render for each of them.
 
    In the end we need append all of them
   */

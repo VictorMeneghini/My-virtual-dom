@@ -26,12 +26,18 @@ const createVApp = count => createElement("div", {
 let count = 0;
 const vApp = createVApp(count)
 const $app = render(vApp)
-
 let $rootEl = mount($app, document.getElementById("app"))
 
 setInterval(() => {
-  count++
-  $rootEl = mount(render(createVApp(count)), $rootEl);
+  count++;
+  const vNewApp = createVApp(count)
+  const patch = diff(vApp, vNewApp);
+
+  // we might replace the whole $rootEl,
+  // so we want the patch will return the new $rootEl
+  $rootEl = patch($rootEl);
+
+  vApp = vNewApp;
 }, 1000);
 
 console.log($app)
