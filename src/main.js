@@ -7,6 +7,7 @@
 import createElement from "./vdom/createElement"
 import render from "./vdom/render"
 import mount from "./vdom/mount"
+import diff from "./vdom/diff"
 
 const createVApp = count => createElement("div", {
   attrs: {
@@ -24,7 +25,7 @@ const createVApp = count => createElement("div", {
 })
 
 let count = 0;
-const vApp = createVApp(count)
+let vApp = createVApp(count)
 const $app = render(vApp)
 let $rootEl = mount($app, document.getElementById("app"))
 
