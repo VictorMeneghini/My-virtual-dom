@@ -14,11 +14,17 @@ const createVApp = count => createElement("div", {
     id: "app"
   },
   children: [
-    "hello world",
+    createElement("input", {
+      attrs: {
+        value: "default value",
+        type: "text"
+      }
+    }),
     String(count),
     createElement("img", {
       attrs: {
-        src: "https://onlygoodanimes.files.wordpress.com/2012/12/uchuu-kyoudai-1.jpg"
+        src: "https://onlygoodanimes.files.wordpress.com/2012/12/uchuu-kyoudai-1.jpg",
+        style:"max-width: 800px"
       }
     })
   ]
